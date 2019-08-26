@@ -1,0 +1,5 @@
+<resources>
+    <!-- Spaces -->
+    <dimen name="dimen_0">0dp</dimen>
+    <dimen name="dimen_16">16dp</dimen>
+</resources>

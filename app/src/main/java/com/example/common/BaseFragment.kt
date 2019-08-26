@@ -18,7 +18,7 @@ abstract class BaseFragment<P : BasePresenter, B : ViewDataBinding> : Fragment()
 
     protected lateinit var binding: B
 
-    abstract val contentLayoutId: Int
+    protected abstract val contentLayoutId: Int
         @LayoutRes get
 
     protected open val presenter: P? = null

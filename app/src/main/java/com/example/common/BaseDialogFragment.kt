@@ -13,7 +13,7 @@ abstract class BaseDialogFragment<B : ViewDataBinding> : DialogFragment() {
 
     protected lateinit var binding: B
 
-    abstract val contentLayoutId: Int
+    protected abstract val contentLayoutId: Int
         @LayoutRes get
 
     protected open fun setupBinding(binding: B) {}

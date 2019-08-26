@@ -7,12 +7,12 @@ import androidx.fragment.app.Fragment
 
 abstract class BaseActivity : AppCompatActivity() {
 
-    abstract val contentLayoutId: Int
+    protected abstract val contentLayoutId: Int
         @LayoutRes get
 
-    open val fragmentLayout: Int? = null
+    protected open val fragmentLayout: Int? = null
 
-    open val fragmentForLayout: Fragment? = null
+    protected open val fragmentForLayout: Fragment? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

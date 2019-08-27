@@ -15,14 +15,16 @@ class RepositoryImpl constructor(private val chuckNorrisJokesRepository: Reposit
         private var INSTANCE: Repository? = null
 
         fun initRepository(context: Context) {
-            INSTANCE ?: synchronized(this) {
-                //todo use context for initialization another data sources like Shared Preferences, DB etc.
-                val networkDataSource = NetworkDataSource()
+            if (INSTANCE == null) {
+                synchronized(this) {
+                    //todo use context for initialization another data sources like Shared Preferences, DB etc.
+                    val networkDataSource = NetworkDataSource()
 
-                //todo init all repositories
-                val chuckNorrisJokesRepository = ChuckNorrisJokesRepository(networkDataSource)
+                    //todo init all repositories
+                    val chuckNorrisJokesRepository = ChuckNorrisJokesRepository(networkDataSource)
 
-                RepositoryImpl(chuckNorrisJokesRepository).also { INSTANCE = it }
+                    RepositoryImpl(chuckNorrisJokesRepository).also { INSTANCE = it }
+                }
             }
         }
 

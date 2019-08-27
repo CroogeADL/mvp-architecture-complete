@@ -21,8 +21,6 @@ abstract class BaseFragment<P : BasePresenter, B : ViewDataBinding> : Fragment()
     protected abstract val contentLayoutId: Int
         @LayoutRes get
 
-    protected open val presenter: P? = null
-
     protected open fun setupBinding(binding: B) {}
 
     protected open fun setupActionBar(toolbar: Toolbar) {

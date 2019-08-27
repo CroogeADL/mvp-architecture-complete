@@ -8,8 +8,11 @@ import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.DialogFragment
+import com.example.ui.base.BasePresenter
+import com.example.ui.base.BaseView
 
-abstract class BaseDialogFragment<B : ViewDataBinding> : DialogFragment() {
+abstract class BaseDialogFragment<P : BasePresenter, B : ViewDataBinding> : DialogFragment(),
+    BaseView<P> {
 
     protected lateinit var binding: B
 
@@ -18,18 +21,15 @@ abstract class BaseDialogFragment<B : ViewDataBinding> : DialogFragment() {
 
     protected open fun setupBinding(binding: B) {}
 
-    protected open fun setupViewModel() {}
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         binding = DataBindingUtil.inflate(inflater, contentLayoutId, container, false)
         binding.lifecycleOwner = this
         setupBinding(binding)
         return binding.root
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        setupViewModel()
     }
 
     override fun onStart() {
@@ -44,5 +44,7 @@ abstract class BaseDialogFragment<B : ViewDataBinding> : DialogFragment() {
             setBackgroundDrawableResource(android.R.color.transparent)
             setLayout(width, height)
         }
+
+        presenter?.start()
     }
 }

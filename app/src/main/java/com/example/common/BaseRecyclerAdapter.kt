@@ -8,7 +8,7 @@ abstract class BaseRecyclerAdapter<T, B : ViewDataBinding, VH : BaseViewHolder<B
 
     override fun getItemCount() = dataList.size
 
-    protected fun add(index: Int = -1, item: T) {
+    fun add(index: Int = -1, item: T) {
         if (dataList is MutableList<T>) {
             when {
                 index > -1 -> {
@@ -23,7 +23,7 @@ abstract class BaseRecyclerAdapter<T, B : ViewDataBinding, VH : BaseViewHolder<B
         }
     }
 
-    protected fun remove(index: Int = -1, item: T) {
+    fun remove(index: Int = -1, item: T) {
         if (dataList is MutableList<T>) {
             dataList.remove(item)
             takeIf { index > -1 }.apply { notifyItemRemoved(index) } ?: notifyDataSetChanged()
